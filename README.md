@@ -5,7 +5,7 @@
 ## Notice
 - I had a gradle issue with the project you provided me
 - So i created a new flutter project and moved all dart files, relevant files and assets to this new flutter project and completed the task.
-- there is Screenshots in screenshots folder and a video for web demo named dineOut.mp4.
+- there is Screenshots in `screenshots` folder and a video for web demo named `dineOut.mp4` and `mobile.mp4` for mobile.
 
 
 # DineOut Applicant Task
