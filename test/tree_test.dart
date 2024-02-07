@@ -11,8 +11,12 @@ void main() {
     test('Menu B', () {
       MenuTreeRoot root = MenuTreeRoot(restaurants['b']!.menu);
       List<MenuTreeNode> traversed = root.traverse();
-      expect(traversed.length, 1, reason: "Traverse method should return only the root node for an empty menu.");
-      expect(traversed[0], root, reason: "Traverse method should return only the root node for an empty menu.");
+      expect(traversed.length, 1,
+          reason:
+              "Traverse method should return only the root node for an empty menu.");
+      expect(traversed[0], root,
+          reason:
+              "Traverse method should return only the root node for an empty menu.");
     });
 
     test('Menu C', () {
@@ -20,18 +24,26 @@ void main() {
       MenuTreeRoot root = MenuTreeRoot(menu);
       List<MenuTreeNode> traversed = root.traverse();
       expect(traversed.length, 3,
-          reason: "Traverse method should return the root node, the category, and the entry for Menu C.");
-      expect(traversed[0], root, reason: "Traversal should start with the root node for a menu with one category.");
+          reason:
+              "Traverse method should return the root node, the category, and the entry for Menu C.");
+      expect(traversed[0], root,
+          reason:
+              "Traversal should start with the root node for a menu with one category.");
       expect(traversed[1], root.categories[0],
-          reason: "Traversal should return the category as the second element for a menu with one category.");
+          reason:
+              "Traversal should return the category as the second element for a menu with one category.");
       expect(traversed[1].element, menu.categories[0],
-          reason: "Traversal should return the correct category for a menu with one category.");
+          reason:
+              "Traversal should return the correct category for a menu with one category.");
       expect(traversed[2], root.categories[0].containedEntries[0],
-          reason: "Traversal should return the entry as the third element for a menu with one category.");
+          reason:
+              "Traversal should return the entry as the third element for a menu with one category.");
       expect(traversed[2].element, menu.categories[0].entries[0],
-          reason: "Traversal should return the correct entry for a menu with one category.");
+          reason:
+              "Traversal should return the correct entry for a menu with one category.");
 
-      expect(root.categories[0].traverse(), [root.categories[0], root.categories[0].containedEntries[0]],
+      expect(root.categories[0].traverse(),
+          [root.categories[0], root.categories[0].containedEntries[0]],
           reason:
               "Traverse method should return only return the category and its entry when called on a category with one entry.");
     });
@@ -41,8 +53,10 @@ void main() {
       MenuTreeRoot root = MenuTreeRoot(menu);
       List<MenuTreeNode> traversed = root.traverse();
       expect(traversed.length, 24 + 9 + 1,
-          reason: "Traverse method should return the root node, all categories, and all entries for Menu A.");
-      String message = "Traversal needs to return the correct nodes (pre-order) for Menu A.";
+          reason:
+              "Traverse method should return the root node, all categories, and all entries for Menu A.");
+      String message =
+          "Traversal needs to return the correct nodes (pre-order) for Menu A.";
       int i = 0;
       expect(traversed[i++], root, reason: message);
       expectCategory(traversed[i++], startersA, reason: message);
@@ -78,20 +92,28 @@ void main() {
       for (final entry in hotDrinksA.entries) {
         expectEntry(traversed[i++], entry, reason: message);
       }
-      expect(i, 24 + 9 + 1, reason: "Traverse method should return the correct number of nodes for Menu A.");
+      expect(i, 24 + 9 + 1,
+          reason:
+              "Traverse method should return the correct number of nodes for Menu A.");
     });
 
     test('No Entries Test', () {
       const Category noEntries = Category("1", "No Entries", [], null);
       MenuTreeRoot root = MenuTreeRoot(const Menu("1", [noEntries]));
       List<MenuTreeNode> traversed = root.traverse();
-      expect(traversed.length, 2, reason: "Traverse method should return root node and a single category here.");
-      expect(traversed[0], root, reason: "Traverse method should return the root node here.");
-      expect(traversed[1], root.categories[0], reason: "Traverse method should return the category node here.");
-      expect(traversed[1].element, noEntries, reason: "Traverse method should return the category here.");
+      expect(traversed.length, 2,
+          reason:
+              "Traverse method should return root node and a single category here.");
+      expect(traversed[0], root,
+          reason: "Traverse method should return the root node here.");
+      expect(traversed[1], root.categories[0],
+          reason: "Traverse method should return the category node here.");
+      expect(traversed[1].element, noEntries,
+          reason: "Traverse method should return the category here.");
 
       expect(root.categories[0].traverse(), [root.categories[0]],
-          reason: "Traverse method should return only return the category itself when called on the empty category.");
+          reason:
+              "Traverse method should return only return the category itself when called on the empty category.");
     });
 
     test('Deep Hierarchy Test', () {
@@ -103,14 +125,31 @@ void main() {
       const Category level4 = Category("4", "Level 4", [], level3);
       const Category level5 = Category("5", "Level 5", [entryA], level4);
       const Category level6 = Category("6", "Level 6", [entryB], level5);
-      const Menu menu = Menu("1", [level1, level2, level3, level4, level5, level6]);
+      const Menu menu =
+          Menu("1", [level1, level2, level3, level4, level5, level6]);
       MenuTreeRoot root = MenuTreeRoot(menu);
       List<MenuTreeNode> traversed = root.traverse();
       expect(traversed.length, 2 + 6 + 1,
-          reason: "Traverse method should return the root node and all categories and entries.");
-      expect(traversed[0], root, reason: "Traversal should start with the root node for a deep hierarchy.");
-      expect(traversed.map((e) => e.element), [menu, level1, level2, level3, level4, level5, entryA, level6, entryB],
-          reason: "Traversal should return the correct nodes (pre-order) for a deep hierarchy.");
+          reason:
+              "Traverse method should return the root node and all categories and entries.");
+      expect(traversed[0], root,
+          reason:
+              "Traversal should start with the root node for a deep hierarchy.");
+      expect(
+          traversed.map((e) => e.element),
+          [
+            menu,
+            level1,
+            level2,
+            level3,
+            level4,
+            level5,
+            entryA,
+            level6,
+            entryB
+          ],
+          reason:
+              "Traversal should return the correct nodes (pre-order) for a deep hierarchy.");
       expect(
           traversed.map((e) => e.runtimeType),
           [
@@ -124,22 +163,27 @@ void main() {
             MenuTreeCategory,
             MenuTreeEntry
           ],
-          reason: "Traversal should return the correct types for a deep hierarchy.");
+          reason:
+              "Traversal should return the correct types for a deep hierarchy.");
       expect(root.categories[0].traverse().map((e) => e.element),
           [level1, level2, level3, level4, level5, entryA, level6, entryB],
-          reason: "Traverse method should return all nodes for a deep hierarchy when called on the root.");
+          reason:
+              "Traverse method should return all nodes for a deep hierarchy when called on the root.");
     });
   });
 }
 
 /// Checks whether the given [node] is a category and contains the given [category].
 void expectCategory(MenuTreeNode node, Category category, {String? reason}) {
-  expect(node, isA<MenuTreeCategory>(), reason: "The node should be a category.");
-  expect(node.element, category, reason: reason ?? "The node should contain the correct category.");
+  expect(node, isA<MenuTreeCategory>(),
+      reason: "The node should be a category.");
+  expect(node.element, category,
+      reason: reason ?? "The node should contain the correct category.");
 }
 
 /// Checks whether the given [node] is an entry and contains the given [entry].
 void expectEntry(MenuTreeNode node, Entry entry, {String? reason}) {
   expect(node, isA<MenuTreeEntry>(), reason: "The node should be an entry.");
-  expect(node.element, entry, reason: reason ?? "The node should contain the correct entry.");
+  expect(node.element, entry,
+      reason: reason ?? "The node should contain the correct entry.");
 }

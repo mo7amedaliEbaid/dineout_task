@@ -1,3 +1,6 @@
+// Mohamed Ali
+// mo7amedaliebaid@gmail.com
+
 import '../model/placeholder_models.dart';
 
 /// An abstract node in a menu tree, with an attached element.
@@ -30,6 +33,7 @@ abstract class MenuTreeNode<T> {
   /// any of its subcategories.
   /// Mohamed Ali
   /// mo7amedaliebaid@gmail.com
+
   List<MenuTreeNode> traverse() {
     List<MenuTreeNode> menuList = [];
     menuList.add(this);
@@ -46,6 +50,7 @@ abstract class MenuTreeNode<T> {
 
     return menuList;
   }
+
   /// Mohamed Ali
   /// mo7amedaliebaid@gmail.com
   MenuTreeNode(this.element, this.containedEntries);

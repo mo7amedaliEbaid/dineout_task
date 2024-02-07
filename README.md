@@ -1,3 +1,13 @@
+# Mohamed Ali Ebaid
+# Cairo-Egypt
+# mo7amedaliebaid@gmail.com
+
+## Notice
+- I had a gradle issue with the project you provided me
+- So i created a new flutter project and moved all dart files, relevant files and assets to this new flutter project and completed the task.
+- there is Screenshots in screenshots folder and a video for web demo named dineOut.mp4.
+
+
 # DineOut Applicant Task
 
 Thank you for taking the time to complete this task.
