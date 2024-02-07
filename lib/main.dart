@@ -35,6 +35,7 @@ class DineOutApp extends StatelessWidget {
     final theme = _buildTheme();
     return MaterialApp.router(
       title: 'DineOut',
+      debugShowCheckedModeBanner: false,
       scrollBehavior: const ScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.touch,

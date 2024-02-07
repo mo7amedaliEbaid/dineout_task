@@ -28,11 +28,26 @@ abstract class MenuTreeNode<T> {
   /// Traverse this node and its children in preorder.
   /// Entries will be inserted directly after their parent category, and before
   /// any of its subcategories.
+  /// Mohamed Ali
+  /// mo7amedaliebaid@gmail.com
   List<MenuTreeNode> traverse() {
-    // TODO: Implement the traverse method as described in README.md.
-    return [];
-  }
+    List<MenuTreeNode> menuList = [];
+    menuList.add(this);
 
+    // Traverse the categories in pre-order and add them to the menuList.
+    for (final category in categories) {
+      menuList.addAll(category.traverse());
+    }
+
+    // Traverse the entries in pre-order and add them to the menuList.
+    for (final entry in containedEntries) {
+      menuList.addAll(entry.traverse());
+    }
+
+    return menuList;
+  }
+  /// Mohamed Ali
+  /// mo7amedaliebaid@gmail.com
   MenuTreeNode(this.element, this.containedEntries);
 }
 
@@ -41,7 +56,9 @@ class MenuTreeCategory extends MenuTreeNode<Category> {
   // We add any leaf children as entries for this category.
   // Note that categories do not contain their subcategories' entries,
   // which is good, because each subcategory will handle its own entries.
-  MenuTreeCategory(Category category) : super(category, category.entries.map((e) => MenuTreeEntry(e)).toList()) {
+  MenuTreeCategory(Category category)
+      : super(
+            category, category.entries.map((e) => MenuTreeEntry(e)).toList()) {
     // After having added the entries, we still need to set their parent.
     for (final entry in containedEntries) {
       entry.parent = this;
@@ -73,7 +90,8 @@ class MenuTreeCategory extends MenuTreeNode<Category> {
 
   /// The number of entries contained in this category or any of its
   /// subcategories.
-  int get entryCount => _numEntries ??= traverse().whereType<MenuTreeEntry>().length;
+  int get entryCount =>
+      _numEntries ??= traverse().whereType<MenuTreeEntry>().length;
 }
 
 /// A leaf in a menu tree, representing an entry.
@@ -92,7 +110,8 @@ class MenuTreeEntry extends MenuTreeNode<Entry> {
 /// A tree representing a menu, where each inner node is a category and each
 /// leaf is an entry. This class basically serves as the root of the tree.
 class MenuTreeRoot extends MenuTreeNode<Menu> {
-  MenuTreeRoot(Menu menu, {bool includeEmptyCategories = true}) : super(menu, []) {
+  MenuTreeRoot(Menu menu, {bool includeEmptyCategories = true})
+      : super(menu, []) {
     _buildTree(includeEmptyCategories);
   }
 
@@ -116,7 +135,8 @@ class MenuTreeRoot extends MenuTreeNode<Menu> {
       final MenuTreeCategory? parent = categoryMap[baseCategoryId];
       if (parent == null) {
         // We haven't encountered the parent category yet. This is an orphan.
-        orphanNodes[baseCategoryId] = (orphanNodes[baseCategoryId] ?? [])..add(category);
+        orphanNodes[baseCategoryId] = (orphanNodes[baseCategoryId] ?? [])
+          ..add(category);
       } else {
         // We have encountered the parent category already and can set it.
         category.parent = parent;

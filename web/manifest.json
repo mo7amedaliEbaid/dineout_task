@@ -1,6 +1,6 @@
 {
-    "name": "dineout_task",
-    "short_name": "dineout_task",
+    "name": "dine_out_client",
+    "short_name": "dine_out_client",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
